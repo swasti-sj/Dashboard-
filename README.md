@@ -1,4 +1,4 @@
-# Blackcoffer Dashboard Visualizer 🚀
+#  Dashboard Visualizer 🚀
 
 A visual analytics dashboard built using **React.js**, **Node.js/Express**, and **MongoDB**. It reads provided JSON data, seeds it into the database, and offers interactive filters and charts to explore metrics like intensity, relevance, topics, and geography.
 
