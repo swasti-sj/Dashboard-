@@ -23,7 +23,7 @@ const DataView = () => {
   useEffect(() => {
     const fields = Object.keys(filters);
     fields.forEach(field => {
-      axios.get(`http://localhost:5000/api/options/${field}`)
+      axios.get(`http://dashboard-1-yhcn.onrender.com/api/options/${field}`)
         .then(res => setDropdowns(prev => ({ ...prev, [field]: res.data })))
         .catch(err => console.error(`Error loading ${field} options`, err));
     });
@@ -31,7 +31,7 @@ const DataView = () => {
 
   // Fetch filtered data from backend
   useEffect(() => {
-    axios.get('http://localhost:5000/api/data', { params: filters })
+    axios.get('http://dashboard-1-yhcn.onrender.com/api/data', { params: filters })
       .then(res => {
         setData(res.data);
         setFilteredData(res.data); // Initially show all
