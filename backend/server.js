@@ -2,23 +2,30 @@
 
 import express from 'express';
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
 import cors from 'cors';
 import Insight from './model.js';  // Mongoose schema
 
+dotenv.config(); // Loads MONGO_URI from .env (local) or Render environment variables
+
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000; // Render will provide PORT automatically
 
 // Middleware
 app.use(cors());
 app.use(express.json());
 
 // Connect to MongoDB
-mongoose.connect('mongodb://127.0.0.1:27017/dashboardDB', {
+const mongoUri = process.env.MONGO_URI;
+console.log("Connecting to MongoDB URI:", mongoUri);
+
+mongoose.connect(mongoUri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
 .then(() => console.log('✅ MongoDB connected'))
 .catch((err) => console.error('❌ MongoDB connection failed:', err));
+
 
 
 app.get('/', (req, res) => {

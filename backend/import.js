@@ -1,14 +1,17 @@
 // import.js
-
 import mongoose from "mongoose";
 import fs from "fs";
+import dotenv from "dotenv";
 
-// 1. Connect to MongoDB
-mongoose.connect("mongodb://127.0.0.1:27017/dashboardDB", {
+dotenv.config(); // only needed for local development
+
+const mongoUri = process.env.MONGO_URI;
+console.log("Connecting to:", mongoUri);
+mongoose.connect(mongoUri, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 }).then(() => {
-  console.log("✅ Connected to MongoDB");
+  console.log("✅ Connected to MongoDB Atlas");
 }).catch(err => {
   console.error("❌ MongoDB connection error:", err);
 });
